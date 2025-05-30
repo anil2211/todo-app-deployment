@@ -19,14 +19,14 @@ const TodoItem = ({ todo, onDelete, onComplete }) => {
     return (
         <li>
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                <input
+                {/* <input
                     type="checkbox"
                     checked={todo.completed}
                     onChange={() => onComplete(todo._id)}
                 />
                 <span className={todo.completed ? "completed" : ""}>
                     {todo.title}
-                </span>
+                </span> */}
             </div>
             <button
                 className="delete-button"

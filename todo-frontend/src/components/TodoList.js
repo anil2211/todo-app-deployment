@@ -42,8 +42,7 @@ const TodoList = () =>{
 
     const deleteTodo = async (id) => {
     try {
-        console.log("Deleting todo at :", `${BACKEND_URL}/delete-todo/${id}`);
-
+        
         await fetch(`${BACKEND_URL}/delete-todo/${id}`, {
             method: "DELETE"
         });
@@ -112,7 +111,7 @@ const completeTodo = async (id, completed) => {
                         key={todo._id}
                         todo={todo}
                         onDelete={deleteTodo}
-                        // onComplete={completeTodo}
+                        onComplete={completeTodo}
                     />
                 ))
             }
