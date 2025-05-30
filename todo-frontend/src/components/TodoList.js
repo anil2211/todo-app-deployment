@@ -60,6 +60,11 @@ const completeTodo = async (id, completed) => {
             },
             body: JSON.stringify({ completed })
         });
+
+        if (!response.ok) {
+            throw new Error(`Failed to update: ${response.status}`);
+        }
+
         const updated = await response.json();
         setTodos((prev) =>
             prev.map((todo) =>

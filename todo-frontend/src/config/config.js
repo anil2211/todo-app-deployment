@@ -2,5 +2,5 @@
 
 // export default BACKEND_URL
 
-const BACKEND_URL = "https://todo-backend-fxr3.onrender.com/api/";
+const BACKEND_URL = "https://todo-backend-fxr3.onrender.com/api";
 export default BACKEND_URL;
