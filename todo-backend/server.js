@@ -20,10 +20,20 @@ connectDB()
 //     console.log(`server is running on port ${PORT}`)
 // })
 
-app.use(express.static(path.join(__dirname, "../todo-frontend/build")))
+// app.use(express.static(path.join(__dirname, "../todo-frontend/build")))
+// app.get("*", (req, res) =>{
+//     res.sendFile(path.join(__dirname, "../todo-frontend/build", "index.html"))
+// })
 
-app.get("*", (req, res) =>{
-    res.sendFile(path.join(__dirname, "../todo-frontend/build", "index.html"))
-})
+
+
+const cors = require("cors");
+
+app.use(cors({
+  origin: 'https://anil2211.github.io',  // 👈 your GitHub Pages domain
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
+
 module.exports = app;
 // app.use()
