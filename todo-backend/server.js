@@ -31,7 +31,7 @@ const cors = require("cors");
 
 app.use(cors({
   origin: 'https://anil2211.github.io',  // 👈 your GitHub Pages domain
-  methods: ['GET', 'POST'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
 
