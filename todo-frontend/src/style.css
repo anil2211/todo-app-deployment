@@ -95,10 +95,10 @@ li:hover {
 }
 
 /* Checkbox */
-input[type="checkbox"] {
+/* input[type="checkbox"] {
     margin-right: 10px;
     transform: scale(1.2);
-}
+} */
 
 /* Completed Task Style */
 .completed {
