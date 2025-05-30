@@ -34,3 +34,34 @@ exports.addTodo =  async (req,res)=>{
     }
     
 }
+
+exports.deleteTodo = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deletedTodo = await Todo.findByIdAndDelete(id);
+        if (!deletedTodo) {
+            return res.status(404).json({ message: "Todo not found" });
+        }
+        res.status(200).json(deletedTodo);
+    } catch (error) {
+        res.status(500).json({ message: "Error deleting todo" });
+    }
+};
+
+exports.updateTodo = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { completed } = req.body;
+        const updatedTodo = await Todo.findByIdAndUpdate(
+            id,
+            { completed: completed, completedAt: completed ? Date.now() : null },
+            { new: true }
+        );
+        if (!updatedTodo) {
+            return res.status(404).json({ message: "Todo not found" });
+        }
+        res.status(200).json(updatedTodo);
+    } catch (error) {
+        res.status(500).json({ message: "Error updating todo" });
+    }
+};
