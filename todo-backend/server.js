@@ -25,7 +25,7 @@ connectDB()
 //     res.sendFile(path.join(__dirname, "../todo-frontend/build", "index.html"))
 // })
 
-
+console.log("Mounting todo routes...");
 
 const cors = require("cors");
 
