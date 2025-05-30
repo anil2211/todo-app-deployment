@@ -42,21 +42,27 @@ const TodoList = () =>{
 
 const deleteTodo = async (id) => {
   try {
-      console.log("Deleting todo with id:", id); // <-- use id directly
+    console.log("Deleting todo with id:", id);
 
-      const response = await fetch(`${BACKEND_URL}/delete-todo/${id}`, {
-          method: "DELETE"
-      });
+    const response = await fetch(`${BACKEND_URL}/delete-todo/${id}`, {
+      method: "DELETE"
+    });
 
-      if (!response.ok) {
-          throw new Error(`Failed to delete todo with status ${response.status}`);
-      }
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Failed to delete:", errorData.message);
+      return;
+    }
 
-      setTodos((prev) => prev.filter((todo) => todo._id !== id));
+    const deleted = await response.json();
+    console.log("Deleted from DB:", deleted);
+
+    setTodos((prev) => prev.filter((todo) => todo._id !== id));
   } catch (error) {
-      console.error("Error deleting todo", error);
+    console.error("Error deleting todo", error);
   }
 };
+    
 
 const completeTodo = async (id, completed) => {
     try {
