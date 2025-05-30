@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 import BACKEND_URL from "../config/config"
 import AddTodo from "./AddTodo"
@@ -58,6 +58,7 @@ const TodoList = () =>{
             console.error("Error while creating the todo", error)
         }
     }
+    
 
     return (
         <div>
