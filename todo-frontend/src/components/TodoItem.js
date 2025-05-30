@@ -28,12 +28,7 @@ const TodoItem = ({ todo, onDelete, onComplete }) => {
                     {todo.title}
                 </span>
             </div>
-            <button
-                className="delete-button"
-                onClick={() => onDelete(todo._id)}
-            >
-                Delete
-            </button>
+            <button className="delete-button" onClick={() => onDelete(todo._id)}> Delete </button>
         </li>
     );
 };

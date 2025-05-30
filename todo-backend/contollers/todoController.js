@@ -1,5 +1,6 @@
 const Todo = require("../models/todoModel")
 const logger  = require("../utils/logger")
+const mongoose = require("mongoose");
 
 exports.getTodos = async(req,res)=>{
     logger.info("Fetching the todos from DB")
@@ -35,17 +36,36 @@ exports.addTodo =  async (req,res)=>{
     
 }
 
+// exports.deleteTodo = async (req, res) => {
+//     try {
+//         const { id } = req.params;
+//         const deletedTodo = await Todo.findByIdAndDelete(id);
+//         if (!deletedTodo) {
+//             return res.status(404).json({ message: "Todo not found" });
+//         }
+//         res.status(200).json(deletedTodo);
+//     } catch (error) {
+//         res.status(500).json({ message: "Error deleting todo" });
+//     }
+// };
+
 exports.deleteTodo = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const deletedTodo = await Todo.findByIdAndDelete(id);
-        if (!deletedTodo) {
-            return res.status(404).json({ message: "Todo not found" });
-        }
-        res.status(200).json(deletedTodo);
-    } catch (error) {
-        res.status(500).json({ message: "Error deleting todo" });
+  const { id } = req.params;
+    console.log("Deleting todo with id:", todo._id);
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ message: "Invalid todo ID format" });
+  }
+
+  try {
+    const deletedTodo = await Todo.findByIdAndDelete(id);
+    if (!deletedTodo) {
+      return res.status(404).json({ message: "Todo not found" });
     }
+    res.status(200).json(deletedTodo);
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting todo" });
+  }
 };
 
 exports.updateTodo = async (req, res) => {
