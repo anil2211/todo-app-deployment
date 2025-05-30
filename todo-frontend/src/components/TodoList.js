@@ -42,7 +42,7 @@ const TodoList = () =>{
 
     const deleteTodo = async (id) => {
     try {
-        console.log("Deleting todo at 45:", `${BACKEND_URL}/delete-todo/${id}`);
+        console.log("Deleting todo at :", `${BACKEND_URL}/delete-todo/${id}`);
 
         await fetch(`${BACKEND_URL}/delete-todo/${id}`, {
             method: "DELETE"
@@ -55,7 +55,7 @@ const TodoList = () =>{
 
 const completeTodo = async (id, completed) => {
     try {
-        console.log("Updating todo at 56:", `${BACKEND_URL}/update-todo/${id}`);
+        console.log("Updating todo at :", `${BACKEND_URL}/update-todo/${id}`);
         const response = await fetch(`${BACKEND_URL}/update-todo/${id}`, {
             method: "PUT",
             headers: {
@@ -64,7 +64,7 @@ const completeTodo = async (id, completed) => {
             body: JSON.stringify({ completed })
         });
 
-        console.log("Updating todo at 65:", `${BACKEND_URL}/update-todo/${id}`);
+        console.log("Updating todo at:", `${BACKEND_URL}/update-todo/${id}`);
 
         if (!response.ok) {
             throw new Error(`Failed to update: ${response.status}`);
@@ -112,7 +112,7 @@ const completeTodo = async (id, completed) => {
                         key={todo._id}
                         todo={todo}
                         onDelete={deleteTodo}
-                        onComplete={completeTodo}
+                        // onComplete={completeTodo}
                     />
                 ))
             }
