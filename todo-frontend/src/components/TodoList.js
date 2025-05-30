@@ -40,7 +40,7 @@ const TodoList = () =>{
         }
     }
 
-const deleteTodo = async (id) => {
+    const deleteTodo = async (id) => {
   try {
     console.log("Deleting todo with id:", id);
 
@@ -49,8 +49,8 @@ const deleteTodo = async (id) => {
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
-      console.error("Failed to delete:", errorData.message);
+      const text = await response.text(); // <-- Don't try to parse as JSON
+      console.error("Failed to delete. Raw response:", text);
       return;
     }
 
@@ -62,6 +62,7 @@ const deleteTodo = async (id) => {
     console.error("Error deleting todo", error);
   }
 };
+
     
 
 const completeTodo = async (id, completed) => {
