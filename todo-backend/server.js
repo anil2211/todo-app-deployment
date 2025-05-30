@@ -1,38 +1,38 @@
-const express = require("express")
-const cors = require("cors")
-const bodyParser = require("body-parser")
-const dotenv = require("dotenv")
-const connectDB = require("./db")
-const todoRoutes = require("./routes/todoRoutes")
-const path = require("path")
-dotenv.config()
-
-const app = express();
 app.use(cors())
-app.use(bodyParser.json())
-app.use(express.json())
 app.use('/api', todoRoutes)
 
-connectDB()
-
-// const PORT = process.env.PORT || 3002;
-// app.listen(PORT, () => {
-//     console.log(`server is running on port ${PORT}`)
-// })
-
-// app.use(express.static(path.join(__dirname, "../todo-frontend/build")))
-// app.get("*", (req, res) =>{
-//     res.sendFile(path.join(__dirname, "../todo-frontend/build", "index.html"))
-// })
-
-
+const express = require("express");
 const cors = require("cors");
+const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
+const path = require("path");
 
+const connectDB = require("./db");
+const todoRoutes = require("./routes/todoRoutes");
+
+dotenv.config();
+
+const app = express();
+connectDB();
+
+// ✅ CORS config
 app.use(cors({
-  origin: 'https://anil2211.github.io',  // 👈 your GitHub Pages domain
+  origin: 'https://anil2211.github.io',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
 
+// Middlewares
+app.use(bodyParser.json());
+app.use(express.json());
+
+// API routes first
+app.use('/api', todoRoutes);
+
+// Serve frontend (after API routes!)
+app.use(express.static(path.join(__dirname, "../todo-frontend/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../todo-frontend/build", "index.html"));
+});
+
 module.exports = app;
-// app.use()

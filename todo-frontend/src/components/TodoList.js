@@ -51,7 +51,6 @@ const TodoList = () =>{
     if (!response.ok) {
       const text = await response.text();
       console.error("Failed to delete. Raw response:",text);
-      console.error("Failed to delete. Raw response:", error);
       return;
     }
 
