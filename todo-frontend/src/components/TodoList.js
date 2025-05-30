@@ -49,8 +49,9 @@ const TodoList = () =>{
     });
 
     if (!response.ok) {
-      const text = await response.text(); // <-- Don't try to parse as JSON
-      console.error("Failed to delete. Raw response:", text);
+      const text = await response.text();
+      console.error("Failed to delete. Raw response:",text);
+      console.error("Failed to delete. Raw response:", error);
       return;
     }
 
