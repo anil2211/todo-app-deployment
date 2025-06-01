@@ -19,17 +19,14 @@ exports.addTodo =  async (req,res)=>{
     try {
         const title  = req.body.title;
         console.log("Adding a new todo", req.body)
-        const { id } = req.params;
-        console.log("add todo with id:", todo._id);
-
         logger.info(`Adding a new todo ${title}`)
         const newTodo = new Todo({
-            title: title,
-            id: id
+            title: title
         })
 
         logger.info("Adding the todo to DB ", newTodo)
         const savedTodo = await newTodo.save()
+        console.log("New todo added with ID:", savedTodo._id);
         logger.info("Added the todo to DB ", savedTodo)
 
         res.status(200).json(savedTodo)
@@ -55,7 +52,7 @@ exports.addTodo =  async (req,res)=>{
 
 exports.deleteTodo = async (req, res) => {
   const { id } = req.params;
-    console.log("Deleting todo with id:", todo._id);
+    console.log("Deleting todo with id:", id);
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({ message: "Invalid todo ID format" });
