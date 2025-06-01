@@ -1,6 +1,3 @@
-app.use(cors())
-app.use('/api', todoRoutes)
-
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -13,9 +10,16 @@ const todoRoutes = require("./routes/todoRoutes");
 dotenv.config();
 
 const app = express();
+
 connectDB();
 
-// ✅ CORS config
+// Request logging middleware — add here
+app.use((req, res, next) => {
+  console.log(`Request: ${req.method} ${req.url}`);
+  next();
+});
+
+// CORS config
 app.use(cors({
   origin: 'https://anil2211.github.io',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],

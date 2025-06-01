@@ -22,7 +22,7 @@ const TodoList = () =>{
     }
 
     const addTodo = async (title) =>{
-        console.log("Adding todo", title)
+        console.log("Adding todo", title)  // This is just for debugging purposes
         try {
             const response = await fetch(`${BACKEND_URL}/add-todo`,{
                 method: "POST",
@@ -31,12 +31,14 @@ const TodoList = () =>{
                 },
                 body: JSON.stringify({title})
             })
-            console.log("response is", response)
+            console.log("response is", response)   // This is just for debugging purposes
             const newTodo = await response.json();
-            console.log("New todo object from server:", newTodo);
-            console.log("New todo ID:", newTodo._id);
+
+            console.log("New todo object from server:", newTodo); // This is just for debugging purposes
+            console.log("New todo ID:", newTodo._id);        // This is just for debugging purposes
+
             setTodos((prev)=> [...prev, newTodo])
-            console.log("Response received", response)
+            console.log("Response received", response)    // This is just for debugging purposes
         } catch (error) {
             console.error("Error while creating the todo", error)
         }
