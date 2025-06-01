@@ -33,6 +33,7 @@ const TodoList = () =>{
             })
             console.log("response is", response)
             const newTodo = await response.json();
+            console.log("New todo object from server:", newTodo);
             console.log("New todo ID:", newTodo._id);
             setTodos((prev)=> [...prev, newTodo])
             console.log("Response received", response)
