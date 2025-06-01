@@ -19,11 +19,13 @@ exports.addTodo =  async (req,res)=>{
     try {
         const title  = req.body.title;
         console.log("Adding a new todo", req.body)
-        const id  = req.body._id;
-        console.log("id of addtodo of todo",id)
+        const { id } = req.params;
+        console.log("add todo with id:", todo._id);
+
         logger.info(`Adding a new todo ${title}`)
         const newTodo = new Todo({
-            title: title
+            title: title,
+            id: id
         })
 
         logger.info("Adding the todo to DB ", newTodo)
